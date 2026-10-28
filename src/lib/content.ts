@@ -47,6 +47,12 @@ const Copy = z.object({
     heading: z.string(),
     teaser: z.string(),
     unscheduled: z.string(),
+    when: z.string(),
+    countdown: z.string(),
+    dDay: z.string().includes('{n}', { message: '{n} 자리가 있어야 합니다' }),
+    opensAt: z.string().includes('{time}', { message: '{time} 자리가 있어야 합니다' }),
+    ruleLabel: z.string(),
+    prizeLabel: z.string(),
     rules: z.array(z.string()),
     prize: z.string(),
     enter: z.string(),
@@ -106,6 +112,7 @@ export const links = parse(Links, linksJson, 'links.json');
 export const departments = parse(Departments, departmentsJson, 'departments.json');
 
 export type OpinionCopy = z.infer<typeof Copy>['opinion'];
+export type ExamCopy = z.infer<typeof Copy>['exam'];
 export type DepartmentList = z.infer<typeof Departments>;
 
 export type Letter = { paragraphs: string[]; signature: string | null };

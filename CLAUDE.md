@@ -35,8 +35,10 @@ src/lib/content.ts  content/ 로더. zod로 검증하고, 틀리면 파일·칸 
 src/lib/store/      저장소 어댑터. redis.ts(운영, Upstash) · file.ts(로컬, .data/store.json). 같은 Store 인터페이스
 src/lib/messages.ts 의견서 규칙 전부 (검증·속도 제한·24시간 수정·선정글 삭제 불가·피드 정렬)
 src/lib/limits.ts   서버 검증과 입력창이 같이 쓰는 한도 (300자 등)
-src/components/     Sheet(공보 한 쪽) · Cover · Letter · Timeline · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt
-src/app/api/        messages(GET 피드·POST 작성) · messages/mine · messages/[id](PATCH·DELETE) · visit
+src/lib/phase.ts    【심사 공고】 상태 계산. 서버·브라우저 공용 (아래 '시각 기준 상태')
+src/lib/schedule.ts 일정 → 카드 스냅숏, publish_at 전 게이트. admin.ts는 관리자 쿠키 확인
+src/components/     Sheet(공보 한 쪽) · Cover · Letter · Timeline · Exam(심사 공고) · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt · PrePublish
+src/app/api/        messages(GET 피드·POST 작성) · messages/mine · messages/[id](PATCH·DELETE) · visit · exam(GET 카드 스냅숏)
 docs/               PRD, ②용 문항 초안
 ```
 
@@ -85,6 +87,10 @@ docs/               PRD, ②용 문항 초안
 - 일정 값이 비어 있으면(D 미정) 페이지는 공개, 【심사 공고】는 예고 카드만.
 - `publish_at`이 정해졌고 그 전이면 일반 방문자에게는 "게임은 지정한 날 12:50에 실행됩니다" 안내만. 관리자 쿠키는 통과.
 - 모든 시각은 KST. 클라이언트 시계 대신 서버 시각으로 보정한다.
+- 카드 세부 상태: 미정 → 예고(D-n / 당일 HH:MM:SS) → 입장(live_open_at) → 진행(live_start_at ~ D일 자정)
+  → 결과(우승자 입력) / 대기(D일이 지났는데 우승자 없음). 라이브 주소는 입장 시각부터만 응답에 싣는다.
+- 관리자 쿠키 `fw_admin` = sha256(`fw-admin:` + ADMIN_KEY). 쿠키를 굽는 일은 ④ /admin에서.
+- 로컬에서 상태를 보려면 `.data/store.json`의 `config` 시각을 고친다 (관리자 화면 전까지).
 
 ## 진행 단계
 

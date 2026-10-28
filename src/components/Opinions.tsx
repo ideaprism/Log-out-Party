@@ -65,14 +65,14 @@ export function Opinions({
 
   return (
     <>
-      <Sheet id="opinion" page={4} docNo={docNo}>
+      <Sheet id="opinion" page={5} docNo={docNo}>
         <h2 className={s.h}>{text.heading}</h2>
         <p className={s.notice}>※ {text.notice}</p>
         <p className={s.rule}>{text.pickRule}</p>
         <OpinionForm departments={departments} text={text} onSubmitted={() => refresh().catch(() => {})} />
         <MyOpinions items={mine} onChanged={() => refresh().catch(() => {})} />
       </Sheet>
-      <Sheet id="feed" page={5} docNo={docNo}>
+      <Sheet id="feed" page={6} docNo={docNo}>
         <OpinionFeed feed={feed} text={text} loadingMore={loadingMore} onMore={more} />
       </Sheet>
     </>

@@ -1,0 +1,34 @@
+import 'server-only';
+import { isAdmin } from './admin';
+import { examPhase, type ExamSnapshot } from './phase';
+import { getStore } from './store';
+import type { EventConfig } from './types';
+
+function snapshot(c: EventConfig, now: number): ExamSnapshot {
+  const base = { openAt: c.liveOpenAt, startAt: c.liveStartAt, winner: c.liveWinnerName?.trim() || null };
+  const phase = examPhase(base, now);
+  return {
+    now: new Date(now).toISOString(),
+    ...base,
+    url: phase === 'open' || phase === 'live' ? c.liveUrl : null,
+  };
+}
+
+/** /api/exam — 카드가 시각을 맞추고 주소·우승자를 받아 가는 곳 */
+export async function examSnapshot(): Promise<ExamSnapshot> {
+  return snapshot(await getStore().getConfig(), Date.now());
+}
+
+/**
+ * 첫 화면용. publishAt 전이면 일반 방문자에게는 안내만 보이도록 게시 시각을 함께 준다.
+ * 관리자 쿠키가 있으면 통과.
+ */
+export async function pageSchedule(): Promise<{ exam: ExamSnapshot; unpublishedUntil: string | null }> {
+  const c = await getStore().getConfig();
+  const now = Date.now();
+  const before = !!c.publishAt && now < Date.parse(c.publishAt);
+  return {
+    exam: snapshot(c, now),
+    unpublishedUntil: before && !(await isAdmin()) ? c.publishAt : null,
+  };
+}
