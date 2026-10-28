@@ -71,6 +71,7 @@ const Copy = z.object({
     consent: z.string(),
   }),
   ending: z.object({
+    heading: z.string(),
     freeUse: z.string(),
     contactButton: z.string(),
     nextFilingPrefix: z.string(),

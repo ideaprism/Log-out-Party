@@ -26,6 +26,7 @@ npm run typecheck
 
 - 미리보기 설정: `.claude/launch.json` (farewell-dev)
 - 저장소 환경변수가 없으면 로컬 파일(`.data/store.json`)로 돈다. 운영은 Upstash Redis.
+- 미리보기 그림의 절대 주소는 `SITE_URL` → Vercel 운영 도메인 → localhost 순. 도메인을 바꾸면 `SITE_URL`을 넣는다.
 
 ## 구조
 
@@ -37,9 +38,10 @@ src/lib/messages.ts 의견서 규칙 전부 (검증·속도 제한·24시간 수
 src/lib/limits.ts   서버 검증과 입력창이 같이 쓰는 한도 (300자 등)
 src/lib/phase.ts    【심사 공고】 상태 계산. 서버·브라우저 공용 (아래 '시각 기준 상태')
 src/lib/schedule.ts 일정 → 카드 스냅숏, publish_at 전 게이트(화면·의견서 API 모두)
+src/app/opengraph-image.tsx  링크 미리보기(공보 1면). 빌드 때 Google Fonts에서 쓰는 글자만 받아 그린다
 src/lib/admin.ts    관리자 쿠키·로그인. adminOps.ts는 일정 저장·우승자·숨김/선정·CSV
-src/components/     admin/(AdminPanel·AdminLogin·인쇄) · Sheet(공보 한 쪽) · Cover · Letter · Timeline · Exam(심사 공고) · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt · PrePublish
-src/app/api/        messages(GET 피드·POST 작성) · messages/mine · messages/[id](PATCH·DELETE) · visit · exam(GET 카드 스냅숏)
+src/components/     admin/(AdminPanel·AdminLogin·인쇄) · Sheet(공보 한 쪽) · Cover · Letter · Timeline · Exam(심사 공고) · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt · PrePublish · Ending(①자유 실시·②다음 출원·③서명)
+src/app/api/        messages(GET 피드·POST 작성) · messages/mine · messages/[id](PATCH·DELETE) · visit · exam(GET 카드 스냅숏) · vcard(연락처 .vcf, 게시 전엔 관리자만)
                     admin/ login·logout·state·schedule·winner·messages/[id]·export (전부 쿠키 확인)
 docs/               PRD, ②용 문항 초안
 ```

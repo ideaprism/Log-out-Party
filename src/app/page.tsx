@@ -1,4 +1,5 @@
 import { Cover } from '@/components/Cover';
+import { Ending } from '@/components/Ending';
 import { Exam } from '@/components/Exam';
 import { Letter } from '@/components/Letter';
 import { Opinions } from '@/components/Opinions';
@@ -23,6 +24,7 @@ export default async function Home() {
       <Timeline />
       <Exam docNo={cover.docNo} initial={exam} text={copy.exam} />
       <Opinions docNo={cover.docNo} initialFeed={initialFeed} departments={departments} text={copy.opinion} />
+      <Ending />
     </main>
   );
 }

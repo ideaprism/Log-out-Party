@@ -1,0 +1,58 @@
+/* 엔딩 — 먹 선과 글만. 마지막 서명은 굵은 괘선 아래 오른쪽 (편지 서명과 같은 자리). */
+
+.h {
+  padding: 14px 0 10px;
+  border-top: 2.2px solid var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.part {
+  padding: 14px 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.part + .part { border-top: 1px solid var(--ink); }
+
+.free {
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+/* 의견서 제출 버튼과 같은 먹 단추 */
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.next {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.link {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.2px;
+}
+
+.sign {
+  margin-top: 4px;
+  padding: 18px 0 8px;
+  border-top: 2.2px solid var(--ink);
+  text-align: right;
+  font-size: 18px;
+  font-weight: 700;
+}

@@ -7,7 +7,7 @@
 | `cover.json` | 1쪽 표지 (공보 1면) | 따옴표 안의 값만 바꾼다 |
 | `letter.md` | 2쪽 (57) 요약 = 감사 편지 | 빈 줄로 문단을 나눈다. `—`로 시작하는 문단은 서명 |
 | `timeline.json` | 3쪽 【도 1】 흐름도 | `items`에 `{ "year", "title", "note" }`를 더하거나 뺀다 |
-| `copy.json` | 심사 공고 · 의견서 · 엔딩 문구 | PRD 4.4 확정 문구. 배치 규칙은 `_note` 참고 |
+| `copy.json` | 심사 공고 · 의견서 · 엔딩 문구 (엔딩 표제 `ending.heading` 포함) | PRD 4.4 확정 문구. 배치 규칙은 `_note` 참고 |
 | `contact.json` | 엔딩 [연락처 저장] 버튼 (vCard) | 화면에는 번호가 나오지 않는다 |
 | `links.json` | 엔딩 ② 다음 출원 링크 | IdeaPrism 링크는 여기 한 곳만 |
 | `departments.json` | 의견서 부서 선택 목록 | 조직도에 맞게 고친다 |

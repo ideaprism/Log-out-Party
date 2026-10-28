@@ -12,9 +12,28 @@ const myeongjo = Nanum_Myeongjo({
   variable: '--font-myeongjo',
 });
 
+/**
+ * 미리보기 그림은 절대 주소여야 카카오톡·게시판이 가져간다.
+ * SITE_URL이 있으면 그것, Vercel 위면 운영 도메인, 아니면 로컬.
+ */
+const siteUrl =
+  process.env.SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000');
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: copy.meta.title,
   description: copy.meta.description,
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    url: '/',
+    title: copy.meta.title,
+    description: copy.meta.description,
+  },
+  twitter: { card: 'summary_large_image' },
 };
 
 export const viewport: Viewport = {
