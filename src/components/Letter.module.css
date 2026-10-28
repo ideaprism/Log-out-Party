@@ -1,0 +1,29 @@
+.h {
+  padding: 14px 0 10px;
+  border-top: 2.2px solid var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* 자간을 벌린 두 글자 — 공보의 버릇 */
+.gap { display: inline-block; width: 1em; }
+
+/* 양끝 맞춤은 keep-all과 만나면 어절 사이가 벌어진다. 폰 폭에서는 왼쪽 정렬. */
+.text {
+  text-align: left;
+}
+
+.para + .para { margin-top: 14px; }
+
+.pn {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-bottom: 2px;
+}
+
+.sign {
+  margin-top: 24px;
+  text-align: right;
+  font-weight: 700;
+}

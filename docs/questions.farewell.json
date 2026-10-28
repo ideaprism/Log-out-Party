@@ -1,0 +1,158 @@
+{
+  "_note": "존속기간 만료 안내 — Farewell 특별 회차 임시 문항 (v0, 2026-10-28). 엔진은 쉬움2→보통2→어려움6 순으로 뽑는다. 덕담=easy, 회사공지=medium, 특허상식·정창균 퀴즈=hard. text 앞 [확인필요]는 창균님이 사실 확인 후 지울 것.",
+  "_schema": {
+    "id": "고유 ID",
+    "text": "문항 본문",
+    "answer": "O 또는 X",
+    "difficulty": "easy | medium | hard",
+    "category": "greeting | notice | patent | changkyun",
+    "source": "근거 출처 (title, url)",
+    "evidence": "근거 원문 문장"
+  },
+  "pool": [
+    {
+      "id": "fw-greet-01",
+      "text": "창균님은 지난 26년, 좋은 동료들 덕분에 행복하게 일했다.",
+      "answer": "O",
+      "difficulty": "easy",
+      "category": "greeting",
+      "source": { "title": "덕담", "url": null },
+      "evidence": "덕담 문항. 전원 정답을 의도한 워밍업."
+    },
+    {
+      "id": "fw-greet-02",
+      "text": "존속기간이 만료된 특허는 누구나 자유롭게 실시할 수 있다. 퇴직 후의 창균님에게도 언제든 편하게 연락해도 된다.",
+      "answer": "O",
+      "difficulty": "easy",
+      "category": "greeting",
+      "source": { "title": "특허권 존속기간 만료의 효과 (덕담 변형)", "url": null },
+      "evidence": "존속기간이 만료된 특허발명은 누구나 자유롭게 실시할 수 있다."
+    },
+    {
+      "id": "fw-greet-03",
+      "text": "오늘은 창균님의 마지막 출근일이다.",
+      "answer": "O",
+      "difficulty": "easy",
+      "category": "greeting",
+      "source": { "title": "덕담", "url": null },
+      "evidence": "Farewell 특별 회차는 마지막 출근일 12:50에 열린다."
+    },
+    {
+      "id": "fw-notice-01",
+      "text": "2026년은 KIPRIS 서비스 30주년이다.",
+      "answer": "O",
+      "difficulty": "medium",
+      "category": "notice",
+      "source": { "title": "Patent 21 창립 10주년 특집(2005) / KIPRIS 30주년 검색 챌린지(2026)", "url": "https://koreascience.kr/article/JAKO200573333597087.pdf" },
+      "evidence": "1996년 7월 KIPRIS 특허기술정보 온라인 상용서비스 실시. 2026년 7~8월 KIPRIS 30주년 기념 검색 챌린지 개최."
+    },
+    {
+      "id": "fw-notice-02",
+      "text": "특허청은 2025년 '지식재산처'로 확대 개편되었다.",
+      "answer": "O",
+      "difficulty": "medium",
+      "category": "notice",
+      "source": { "title": "MTN, 지식재산처 출범 1년 (2026-10-01)", "url": "https://news.mtn.co.kr/news-detail/2026100116251765175" },
+      "evidence": "특허청이 지식재산처로 승격된 지 1년 (2026년 10월 1일 보도 기준)."
+    },
+    {
+      "id": "fw-notice-03",
+      "text": "2003년 발명의 날 기념식에서 KIPRIS를 직접 시연해 본 대통령은 김대중 대통령이다.",
+      "answer": "X",
+      "difficulty": "medium",
+      "category": "notice",
+      "source": { "title": "Patent 21 창립 10주년 특집(2005)", "url": "https://koreascience.kr/article/JAKO200573333597087.pdf" },
+      "evidence": "2003. 05. 19 발명의 날 기념식 노무현 대통령 KIPRIS 시연."
+    },
+    {
+      "id": "fw-patent-01",
+      "text": "대한민국 특허 제1호는 1948년에 등록된 '유화염료 제조법'이다.",
+      "answer": "O",
+      "difficulty": "hard",
+      "category": "patent",
+      "source": { "title": "서울신문, 국내 첫 특허 1948년 '염료 제조법' (2018-07-18)", "url": "https://m.go.seoul.co.kr/news/2018/07/18/20180718018002" },
+      "evidence": "특허 1호는 유화염료 제조법이다. 1947년 2월 14일 출원, 1948년 11월 20일 등록. 출원인 중앙공업연구소."
+    },
+    {
+      "id": "fw-patent-02",
+      "text": "특허권의 존속기간은 출원일부터 26년이다.",
+      "answer": "X",
+      "difficulty": "hard",
+      "category": "patent",
+      "source": { "title": "특허법 제88조", "url": null },
+      "evidence": "특허권의 존속기간은 설정등록한 날부터 특허출원일 후 20년이 되는 날까지로 한다."
+    },
+    {
+      "id": "fw-patent-03",
+      "text": "우리나라 특허행정은 1977년 특허청 개청과 함께 시작되었다.",
+      "answer": "X",
+      "difficulty": "hard",
+      "category": "patent",
+      "source": { "title": "MTN, 지식재산처 출범 1년 (2026-10-01)", "url": "https://news.mtn.co.kr/news-detail/2026100116251765175" },
+      "evidence": "특허행정은 1946년 특허원에서 출발해 1977년 특허청이 되었고, 2026년 80년을 맞았다."
+    },
+    {
+      "id": "fw-patent-04",
+      "text": "대한민국 실용신안 제1호는 유모차의 일종인 '아동용 보건차'다.",
+      "answer": "O",
+      "difficulty": "hard",
+      "category": "patent",
+      "source": { "title": "전자신문, 대한민국 희망프로젝트 643 지식재산 (2020-01-10)", "url": "https://m.etnews.com/20200110000135" },
+      "evidence": "실용신안 1호는 '아동용 보건차'. 유아동을 위한 유모차라 할 수 있다."
+    },
+    {
+      "id": "fw-ck-01",
+      "text": "[확인필요] 창균님이 입사한 2000년, 회사 이름은 '한국특허정보원'이었다.",
+      "answer": "X",
+      "difficulty": "hard",
+      "category": "changkyun",
+      "source": { "title": "Patent 21 창립 10주년 특집(2005) + 창균님 확인", "url": "https://koreascience.kr/article/JAKO200573333597087.pdf" },
+      "evidence": "1995년 한국발명진흥회 부설 특허기술정보센터로 설립, 2002년 1월 한국특허정보원 창립식. 입사 연월은 창균님 확인 필요."
+    },
+    {
+      "id": "fw-ck-02",
+      "text": "[확인필요] 창균님의 평일 아침은 5시 기상 후 운동으로 시작한다.",
+      "answer": "O",
+      "difficulty": "hard",
+      "category": "changkyun",
+      "source": { "title": "창균님 본인 확인", "url": null },
+      "evidence": "창균님 제공 정보 (v1 PRD Q4). 사실 여부 확인 필요."
+    },
+    {
+      "id": "fw-ck-03",
+      "text": "[확인필요] 창균님이 사무실에서 가장 즐겨 마시는 음료는 믹스커피다.",
+      "answer": "X",
+      "difficulty": "hard",
+      "category": "changkyun",
+      "source": { "title": "창균님 본인 확인", "url": null },
+      "evidence": "창균님 제공 정보 (v1 PRD Q5: 드립 커피 취향). 정답 음료 확인 필요."
+    },
+    {
+      "id": "fw-ck-04",
+      "text": "[확인필요] 창균님은 26년 동안 한 번도 부서를 옮긴 적이 없다.",
+      "answer": "X",
+      "difficulty": "hard",
+      "category": "changkyun",
+      "source": { "title": "창균님 본인 확인", "url": null },
+      "evidence": "창균님은 업무 전반을 두루 경험했다. 거친 부서 수를 해설에 넣을 것."
+    }
+  ],
+  "sudden": [
+    {
+      "id": "fw-sd-01",
+      "text": "[확인필요] 창균님의 입사일부터 오늘(마지막 출근일)까지는 모두 며칠일까?",
+      "answer": 9500,
+      "unit": "일",
+      "source": { "title": "창균님 입사일·D일 확정 후 계산", "url": null },
+      "evidence": "임시값. 입사일과 마지막 출근일 확정 후 정확한 일수로 교체."
+    },
+    {
+      "id": "fw-sd-02",
+      "text": "2024년 말까지 우리나라에 등록된 특허는 모두 몇만 건일까?",
+      "answer": 270,
+      "unit": "만 건",
+      "source": { "title": "특허청 자료 인용 기사 (2025-05-08)", "url": "https://newsseoul.co.kr/news/view/1065583217556016" },
+      "evidence": "지난해(2024년) 말까지 총 2,705,171건의 특허가 등록됐다."
+    }
+  ]
+}

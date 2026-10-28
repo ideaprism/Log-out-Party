@@ -1,0 +1,145 @@
+/* ═══════════════════════════════════════════════════════════════
+   존속기간 만료 안내 — 디자인 시스템
+   원본: ideaprism/KIPlay_OX public/style.css (등록특허공보 아트 디렉션)
+
+   CONSTRAINTS CARD
+     FONT   명조(제목·본문) + 고딕(라벨) + 모노(숫자·부호). INID 괄호 숫자가 서명이다.
+     STYLE  크림 용지에 먹 선화. 면은 해칭. 명암·그라디언트·광택·드롭섀도 금지.
+     MODE   라이트 전용. 의도적 단일 테마.
+
+     인주(--seal)는 선정 의견서의 登 도장에만 쓴다. 그 외 화면의 빨강은 0%다.
+     남색(--navy)은 표지 (19)(12) 기관명 줄에만 쓴다 — 실제 공보의 버릇.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* 지면과 용지 */
+  --ground: #EFEBE1;
+  --paper: #FAF7F0;
+  --paper-2: #FFFFFF;
+
+  /* 글자 */
+  --ink: #141414;
+  --ink-2: #5A5A5A;
+  --ink-3: #6E675C;   /* 용지 위에서 4.5:1을 넘기는 하한 */
+
+  /* 괘선 */
+  --line: #C8C2B6;
+  --line-2: #A79F90;
+
+  /* 공보 기관명 */
+  --navy: #173F6B;
+
+  /* 인주. Seal 컴포넌트 밖에서 쓰지 말 것. */
+  --seal: #B03A2E;
+
+  /* 이징 · 듀레이션 */
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-control: 180ms;
+  --t-enter: 600ms;
+
+  /* 간격 */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 40px;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  --sans: "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  --serif: var(--font-myeongjo), "Nanum Myeongjo", Batang, 바탕, "Noto Serif KR", serif;
+
+  --col: 480px;
+}
+
+/* ─────────────────────────────────────────────── 기본 */
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-snap-type: y proximity;   /* 표지·편지만 한 화면 = 한 장 (Sheet paged) */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; padding: 0; }
+ol, ul { list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────── 공보 장치 */
+
+/* INID 괄호 숫자 — 이 디자인의 서명 */
+.inid {
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+hr.rule-bold, hr.rule-thin { border: 0; margin: 0; }
+hr.rule-bold { border-top: 2.2px solid var(--ink); }
+hr.rule-thin { border-top: 1px solid var(--ink); }
+
+/* 【확인필요】 — 사실 확인 전 자리표시. 인주 대신 점선이다. */
+.tbd {
+  font-family: var(--sans);
+  font-size: 0.72em;
+  line-height: 1;
+  padding: 2px 5px;
+  margin: 0 2px;
+  border: 1px dashed var(--ink-3);
+  color: var(--ink-3);
+  border-radius: 2px;
+  white-space: nowrap;
+  vertical-align: 0.15em;
+  background: transparent;
+}
+
+.sr {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────── 섹션 진입 페이드 */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--t-enter) var(--ease-out),
+    transform var(--t-enter) var(--ease-editorial);
+}
+.js .reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}

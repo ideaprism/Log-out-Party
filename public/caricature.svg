@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="캐리커처 자리표시자">
+  <!-- 자리표시자. 실제 캐리커처로 이 파일을 바꾸거나 content/cover.json figure.src를 고친다. -->
+  <defs>
+    <pattern id="h" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#141414" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+  <rect width="240" height="240" fill="#FFFFFF"/>
+  <g fill="none" stroke="#141414" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 머리 — 도면의 인물에게 표정은 없다 -->
+    <circle cx="120" cy="86" r="38"/>
+    <!-- 어깨와 몸통 -->
+    <path d="M52 220 C56 168 82 140 120 136 C158 140 184 168 188 220"/>
+    <!-- 넥타이 -->
+    <path d="M120 138 l-9 12 l9 46 l9 -46 z" fill="url(#h)"/>
+    <!-- 깃 -->
+    <path d="M100 140 l20 18 l20 -18"/>
+  </g>
+  <g stroke="#141414" stroke-width="0.8" fill="none">
+    <path d="M158 70 L200 46"/>
+    <path d="M178 182 L210 200"/>
+  </g>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#141414">
+    <text x="203" y="44">10</text>
+    <text x="206" y="214">20</text>
+  </g>
+  <text x="120" y="232" text-anchor="middle" font-family="Malgun Gothic, sans-serif" font-size="10" fill="#6E675C">캐리커처 자리</text>
+</svg>

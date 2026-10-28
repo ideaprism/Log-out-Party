@@ -1,0 +1,53 @@
+.sheet {
+  position: relative;
+  width: 100%;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding: 14px 20px 36px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet + .sheet { margin-top: 10px; }
+
+.paged {
+  min-height: 100svh;
+  scroll-snap-align: start;
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.runhead {
+  text-align: right;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+
+.pageno {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* PC — 가운데 고정 폭. 종이 가장자리를 괘선으로 (그림자 금지) */
+@media (min-width: 520px) {
+  .sheet {
+    border: 1px solid var(--line);
+    padding: 18px 32px 40px;
+  }
+  .sheet:first-child { margin-top: 24px; }
+  .sheet:last-child { margin-bottom: 24px; }
+  .sheet + .sheet { margin-top: 16px; }
+}

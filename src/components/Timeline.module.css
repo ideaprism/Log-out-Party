@@ -1,0 +1,94 @@
+.h {
+  padding: 14px 0 18px;
+  border-top: 2.2px solid var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* 【도 N】 캡션은 도면 왼쪽 위에 남는다 (KIPlay_OX 규칙) */
+.caption {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-2);
+  margin-left: 4px;
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0 6px 12px;
+}
+
+/* 상자 사이의 화살표 — 선 하나와 촉 하나. 먹 선화만 쓴다. */
+.flow > li + li {
+  margin-top: 34px;
+}
+.flow > li + li::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  height: 27px;
+  border-left: 1.2px solid var(--ink);
+}
+.flow > li + li::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 5px);
+  top: -9px;
+  border-left: 5.5px solid transparent;
+  border-right: 5.5px solid transparent;
+  border-top: 8px solid var(--ink);
+}
+
+.flow > li { position: relative; }
+
+.terminal {
+  align-self: center;
+  min-width: 60%;
+  padding: 8px 24px;
+  border: 1.2px solid var(--ink);
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 700;
+  background: var(--paper-2);
+}
+
+.step {
+  padding: 14px 16px 12px;
+  border: 1.2px solid var(--ink);
+  background: var(--paper-2);
+}
+
+/* 단계 부호 — 상자 테두리를 끊고 앉는다 */
+.code {
+  position: absolute;
+  top: -0.75em;
+  right: 12px;
+  padding: 0 6px;
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.year {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.note {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
