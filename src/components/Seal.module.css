@@ -1,0 +1,42 @@
+/* 인주(--seal)를 쓰는 유일한 파일. 다른 곳에서 --seal을 참조하지 말 것. */
+
+.seal {
+  display: block;
+  width: 64px;
+  height: 64px;
+  opacity: 0.94;
+}
+
+/* 스크립트가 돌 때만 찍히기 전까지 숨긴다 */
+:global(.js) .seal { opacity: 0; }
+:global(.js) .seal.stamped { opacity: 0.94; }
+
+.ring {
+  fill: none;
+  stroke: var(--seal);
+}
+
+.char {
+  fill: var(--seal);
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 38px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* 찍힌다 — 눌렸다 떨어지는 한 번. 페이드가 아니라 인쇄의 문법 */
+.stamped {
+  animation: stamp 420ms cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+
+@keyframes stamp {
+  0%   { opacity: 0; transform: scale(1.6); }
+  45%  { opacity: 1; transform: scale(0.96); }
+  70%  { transform: scale(1.12); }
+  100% { opacity: 0.94; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.js) .seal, .stamped { opacity: 0.94; animation: none; }
+}

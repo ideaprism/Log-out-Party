@@ -1,0 +1,359 @@
+/* 【의견서】·【의견서 목록】 — 빨강은 Seal.module.css에만 있다. 오류도 먹색 + ※ 문구로. */
+
+.h {
+  padding: 14px 0 10px;
+  border-top: 2.2px solid var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.hSub {
+  margin-left: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+
+.notice {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.rule {
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+/* ── 작성 폼 ── */
+.form {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.lab {
+  display: block;
+  padding: 0;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.req {
+  margin-left: 4px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1.2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--paper-2);
+  font-family: var(--serif);
+  font-size: 17px;   /* 16px 미만이면 iOS가 확대한다 */
+  line-height: 1.6;
+  appearance: none;
+}
+
+select.input {
+  font-family: var(--sans);
+  padding-right: 36px;
+  /* 내림 표시 — 먹 선 두 개 */
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.sub { margin-top: 8px; }
+
+.area {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.count {
+  margin-top: 4px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* 한도 초과는 색이 아니라 굵기·밑줄로 */
+.over {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* 공개 범위 — 두 칸짜리 선택. 고른 칸이 먹으로 칠해진다 */
+.seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1.2px solid var(--ink);
+  border-radius: 2px;
+}
+
+.segItem {
+  position: relative;
+  cursor: pointer;
+}
+
+.segItem + .segItem { border-left: 1.2px solid var(--ink); }
+
+.segItem input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.segItem span {
+  display: block;
+  padding: 11px 8px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 16px;
+  background: var(--paper-2);
+  transition: background var(--t-control) var(--ease-out), color var(--t-control) var(--ease-out);
+}
+
+.segItem input:checked + span {
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.segItem input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.consent {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.consent input {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--ink);
+}
+
+.error,
+.done {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 10px 12px;
+  border: 1.2px dashed var(--ink);
+}
+
+.done { border-style: solid; background: var(--paper-2); }
+
+.submit {
+  min-height: 54px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.submit:disabled { opacity: 0.45; cursor: default; }
+
+/* ── 내 의견서 ── */
+.mine {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ink);
+}
+
+.mineH {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.mineSub {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.mineList {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mineItem {
+  padding: 12px 14px;
+  border: 1px dashed var(--line-2);
+  background: var(--paper-2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag {
+  font-family: var(--sans);
+  font-size: 12px;
+  padding: 1px 7px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn,
+.btnGhost {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn { border: 0; background: var(--ink); color: var(--paper); font-weight: 700; }
+.btnGhost { border: 1.2px solid var(--ink); background: transparent; }
+.btn:disabled, .btnGhost:disabled { opacity: 0.45; cursor: default; }
+
+.until {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* ── 의견서 목록 ── */
+.empty {
+  padding: 28px 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  position: relative;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--line-2);
+  background: var(--paper-2);
+}
+
+.cardPicked {
+  border: 1.6px solid var(--ink);
+  padding-top: 16px;
+}
+
+.pick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.pickLabel {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+}
+
+.who b { font-size: 17px; font-weight: 800; }
+
+.dept {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.body {
+  margin-top: 6px;
+  white-space: pre-wrap;
+}
+
+.when {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.tags .when { margin: 0 0 0 auto; }
+
+.more {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  min-height: 48px;
+  border: 1.2px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 15px;
+  cursor: pointer;
+}

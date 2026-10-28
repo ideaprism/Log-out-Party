@@ -32,10 +32,22 @@ npm run typecheck
 ```
 content/            ★ 글만 바꾸는 곳 (편지·타임라인·연락처·IdeaPrism 링크·부서·카피). README 참고
 src/lib/content.ts  content/ 로더. zod로 검증하고, 틀리면 파일·칸 이름을 대며 멈춘다
-src/components/     Sheet(공보 한 쪽) · Cover · Letter · Timeline · Reveal · Txt
-src/app/            Next.js App Router. 페이지·OG 이미지·API 라우트
+src/lib/store/      저장소 어댑터. redis.ts(운영, Upstash) · file.ts(로컬, .data/store.json). 같은 Store 인터페이스
+src/lib/messages.ts 의견서 규칙 전부 (검증·속도 제한·24시간 수정·선정글 삭제 불가·피드 정렬)
+src/lib/limits.ts   서버 검증과 입력창이 같이 쓰는 한도 (300자 등)
+src/components/     Sheet(공보 한 쪽) · Cover · Letter · Timeline · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt
+src/app/api/        messages(GET 피드·POST 작성) · messages/mine · messages/[id](PATCH·DELETE) · visit
 docs/               PRD, ②용 문항 초안
 ```
+
+### 의견서 데이터 규칙
+
+- 기기 식별은 localStorage의 익명 토큰. 서버는 **sha256 해시만** 저장하고 응답에 절대 싣지 않는다.
+  토큰은 URL에 싣지 않는다(그래서 `mine`·`visit`도 POST).
+- 수정: 같은 기기 + 작성 후 24시간 + 숨김 아님. 삭제: 같은 기기 + 선정되지 않은 글. 남의 글이면 "없음"(404)으로 답한다.
+- 피드: 공개 + 숨김 아님, 선정 먼저 → 최신순, 20건씩. 글자 수는 `Array.from`으로 센다(이모지 1자).
+- 속도 제한: 기기당 10분 5건, IP당 10분 40건(사내 공유기 뒤 여러 명).
+- 로컬에서 선정 상태를 보려면 `.data/store.json`의 `picked`를 직접 true로 (관리자 화면 전까지).
 
 ## 절대 규칙
 

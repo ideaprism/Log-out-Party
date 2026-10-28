@@ -105,6 +105,9 @@ export const contact = parse(Contact, contactJson, 'contact.json');
 export const links = parse(Links, linksJson, 'links.json');
 export const departments = parse(Departments, departmentsJson, 'departments.json');
 
+export type OpinionCopy = z.infer<typeof Copy>['opinion'];
+export type DepartmentList = z.infer<typeof Departments>;
+
 export type Letter = { paragraphs: string[]; signature: string | null };
 
 /** letter.md — 빈 줄로 문단을 나누고, "—"로 시작하는 문단은 서명으로 뗀다. */
