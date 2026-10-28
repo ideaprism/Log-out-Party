@@ -1,0 +1,101 @@
+/* 인쇄용 A4 — 흑백 인쇄를 전제로 먹만 쓴다. 登 표시도 글자로만. */
+
+@page {
+  size: A4;
+  margin: 18mm 16mm;
+}
+
+.page {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  background: var(--paper-2);
+}
+
+.printBtn {
+  display: block;
+  margin: 0 0 20px auto;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.head {
+  padding: 10px 0 14px;
+  border-top: 2.2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.doc {
+  text-align: right;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+.title { font-size: 22px; font-weight: 800; }
+
+.meta {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.list { margin-top: 6px; }
+
+.item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  break-inside: avoid;
+}
+
+.picked { border-bottom: 1.6px solid var(--ink); }
+
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.who b {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.mark {
+  padding: 0 5px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.body {
+  margin-top: 4px;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.when {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+@media print {
+  :global(body) { background: #fff; }
+  .page { padding: 0; max-width: none; background: #fff; }
+  .printBtn { display: none; }
+}

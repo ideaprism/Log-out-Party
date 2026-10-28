@@ -55,6 +55,19 @@ export type MyMessage = PublicMessage & {
   canDelete: boolean;
 };
 
+/** 관리자 화면에 나가는 모양 — 기기 해시만 뺀 전부 */
+export type AdminMessage = Omit<Message, 'deviceHash'> & {
+  /** 선정 마감 전에 제출된 글인가 */
+  eligible: boolean;
+};
+
+export type AdminState = {
+  now: string;
+  config: EventConfig;
+  stats: { visits: number; total: number; public: number; private: number; hidden: number; picked: number };
+  messages: AdminMessage[];
+};
+
 export type FeedPage = {
   items: PublicMessage[];
   next: number | null;

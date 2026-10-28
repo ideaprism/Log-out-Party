@@ -1,6 +1,8 @@
 import 'server-only';
 import { NextResponse } from 'next/server';
+import { requireAdmin } from './admin';
 import { ApiError } from './messages';
+import { assertPublished } from './schedule';
 
 /** 라우트 공통: ApiError는 그 상태와 문구로, 나머지는 500으로 돌려준다. */
 export async function handle<T>(fn: () => Promise<T>, status = 200) {
@@ -24,4 +26,20 @@ export async function readJson(req: Request): Promise<unknown> {
 
 export function clientIp(req: Request) {
   return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'local';
+}
+
+/** 관리자 라우트: 쿠키를 먼저 확인한다 */
+export function adminHandle<T>(fn: () => Promise<T>) {
+  return handle(async () => {
+    await requireAdmin();
+    return fn();
+  });
+}
+
+/** 의견서·방문 라우트: 게시 전이면 관리자만 통과 */
+export function publicHandle<T>(fn: () => Promise<T>, status = 200) {
+  return handle(async () => {
+    await assertPublished();
+    return fn();
+  }, status);
 }

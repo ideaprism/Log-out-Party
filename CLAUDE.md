@@ -36,9 +36,11 @@ src/lib/store/      저장소 어댑터. redis.ts(운영, Upstash) · file.ts(�
 src/lib/messages.ts 의견서 규칙 전부 (검증·속도 제한·24시간 수정·선정글 삭제 불가·피드 정렬)
 src/lib/limits.ts   서버 검증과 입력창이 같이 쓰는 한도 (300자 등)
 src/lib/phase.ts    【심사 공고】 상태 계산. 서버·브라우저 공용 (아래 '시각 기준 상태')
-src/lib/schedule.ts 일정 → 카드 스냅숏, publish_at 전 게이트. admin.ts는 관리자 쿠키 확인
-src/components/     Sheet(공보 한 쪽) · Cover · Letter · Timeline · Exam(심사 공고) · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt · PrePublish
+src/lib/schedule.ts 일정 → 카드 스냅숏, publish_at 전 게이트(화면·의견서 API 모두)
+src/lib/admin.ts    관리자 쿠키·로그인. adminOps.ts는 일정 저장·우승자·숨김/선정·CSV
+src/components/     admin/(AdminPanel·AdminLogin·인쇄) · Sheet(공보 한 쪽) · Cover · Letter · Timeline · Exam(심사 공고) · Opinions(Form·MyOpinions·Feed) · Seal · Reveal · Txt · PrePublish
 src/app/api/        messages(GET 피드·POST 작성) · messages/mine · messages/[id](PATCH·DELETE) · visit · exam(GET 카드 스냅숏)
+                    admin/ login·logout·state·schedule·winner·messages/[id]·export (전부 쿠키 확인)
 docs/               PRD, ②용 문항 초안
 ```
 
@@ -49,7 +51,8 @@ docs/               PRD, ②용 문항 초안
 - 수정: 같은 기기 + 작성 후 24시간 + 숨김 아님. 삭제: 같은 기기 + 선정되지 않은 글. 남의 글이면 "없음"(404)으로 답한다.
 - 피드: 공개 + 숨김 아님, 선정 먼저 → 최신순, 20건씩. 글자 수는 `Array.from`으로 센다(이모지 1자).
 - 속도 제한: 기기당 10분 5건, IP당 10분 40건(사내 공유기 뒤 여러 명).
-- 로컬에서 선정 상태를 보려면 `.data/store.json`의 `picked`를 직접 true로 (관리자 화면 전까지).
+- 선정은 `/admin`에서. 최대 2편, 선정 마감 전 제출분만, 숨긴 글 불가. 선정된 글은 숨김 불가.
+- 관리자 화면 문구는 의견서 폼 라벨처럼 코드에 둔다(창균님 전용 도구). 방문자에게 보이는 글은 여전히 `content/`.
 
 ## 절대 규칙
 
@@ -89,8 +92,9 @@ docs/               PRD, ②용 문항 초안
 - 모든 시각은 KST. 클라이언트 시계 대신 서버 시각으로 보정한다.
 - 카드 세부 상태: 미정 → 예고(D-n / 당일 HH:MM:SS) → 입장(live_open_at) → 진행(live_start_at ~ D일 자정)
   → 결과(우승자 입력) / 대기(D일이 지났는데 우승자 없음). 라이브 주소는 입장 시각부터만 응답에 싣는다.
-- 관리자 쿠키 `fw_admin` = sha256(`fw-admin:` + ADMIN_KEY). 쿠키를 굽는 일은 ④ /admin에서.
-- 로컬에서 상태를 보려면 `.data/store.json`의 `config` 시각을 고친다 (관리자 화면 전까지).
+- 관리자 쿠키 `fw_admin` = sha256(`fw-admin:` + ADMIN_KEY), httpOnly·30일. 키를 바꾸면 기존 쿠키는 모두 무효.
+  로그인 시도는 IP당 10분 10회. 로컬은 `.env.local`의 `ADMIN_KEY`로 `/admin`에 들어간다.
+- 일정은 `/admin`에서 D일 + 그날의 시각(게시·입장·1번 문항·선정 마감)으로 입력한다. 저장은 ISO(UTC).
 
 ## 진행 단계
 

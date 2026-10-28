@@ -1,0 +1,317 @@
+/* 관리 화면 — 공보와 같은 먹·괘선. 빨강은 선정 글의 登 도장(Seal)에만. 오류는 먹색 + ※ 문구. */
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 12px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 4px 0;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.topBtns { display: flex; gap: 6px; }
+
+.panel {
+  padding: 4px 16px 18px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.h {
+  margin: 0 -16px;
+  padding: 12px 16px 0;
+  border-top: 2.2px solid var(--ink);
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.note {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.note b { color: var(--ink); }
+
+.note code {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.error,
+.errorBar {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.errorBar {
+  position: sticky;
+  top: 8px;
+  z-index: 2;
+  padding: 10px 14px;
+  border: 1.6px solid var(--ink);
+  background: var(--paper-2);
+}
+
+/* ── 현황 ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.stat {
+  padding: 8px 10px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper-2);
+}
+
+.stat dt {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.stat dd {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.kv { display: flex; flex-direction: column; gap: 2px; }
+
+.kv > div {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.kv dt {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.kv dd { margin: 0; font-size: 16px; }
+
+/* ── 입력 ── */
+/* 시각 입력은 '오후 12:45 ⏰'가 들어갈 폭이 필요하다. 폰에서는 한 줄에 하나 */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 480px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+.field { display: flex; flex-direction: column; min-width: 0; }
+.wide { grid-column: 1 / -1; }
+
+.lab {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 8px 10px;
+  border: 1.2px solid var(--ink);
+  border-radius: 2px;
+  background: var(--paper-2);
+  font-family: var(--mono);
+  font-size: 17px;   /* 16px 미만이면 iOS가 확대한다 */
+  appearance: none;
+}
+
+.input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.row2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.primary,
+.primarySm,
+.ghost,
+.ghostLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-family: var(--sans);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.primary {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.primarySm {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ghost,
+.ghostLink {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1.2px solid var(--ink);
+  background: transparent;
+  font-size: 15px;
+}
+
+.primary:disabled,
+.primarySm:disabled,
+.ghost:disabled { opacity: 0.4; cursor: default; }
+
+/* ── 의견서 ── */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1.2px solid var(--ink);
+  border-radius: 2px;
+}
+
+.tab {
+  flex: 1 1 auto;
+  min-height: 40px;
+  padding: 0 8px;
+  border: 0;
+  background: var(--paper-2);
+  font-family: var(--sans);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tab + .tab { border-left: 1.2px solid var(--ink); }
+
+.tab[aria-selected='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.empty {
+  padding: 20px 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.list { display: flex; flex-direction: column; gap: 10px; }
+
+.card {
+  position: relative;
+  padding: 12px 14px;
+  border: 1px solid var(--line-2);
+  background: var(--paper-2);
+}
+
+/* 숨긴 글 — 색 대신 점선 테두리와 해칭 */
+.cardHidden {
+  border-style: dashed;
+  border-color: var(--ink-3);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 7px, rgba(20, 20, 20, 0.05) 7px 8px),
+    var(--paper);
+}
+
+.pick {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.pick svg { width: 48px; height: 48px; }
+
+.who {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  padding-right: 56px;
+}
+
+.who b { font-size: 17px; font-weight: 800; }
+
+.dept {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.tag {
+  padding: 1px 6px;
+  border: 1px solid var(--ink-3);
+  border-radius: 2px;
+  font-family: var(--sans);
+  color: var(--ink);
+}
+
+.body {
+  margin-top: 8px;
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
