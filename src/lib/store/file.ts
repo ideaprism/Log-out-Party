@@ -14,7 +14,8 @@ type Data = {
   rate: Record<string, { n: number; resetAt: number }>;
 };
 
-const FILE = path.join(process.cwd(), '.data', 'store.json');
+// E2E는 STORE_FILE로 따로 둔다 — 개발용 데이터를 건드리지 않게
+const FILE = path.resolve(process.cwd(), process.env.STORE_FILE ?? path.join('.data', 'store.json'));
 
 export function createFileStore(): Store {
   // 한 프로세스 안에서 읽고-고치고-쓰기가 겹치지 않게 줄 세운다

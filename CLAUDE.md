@@ -22,7 +22,17 @@
 npm install
 npm run dev          # http://localhost:3000
 npm run typecheck
+npm test             # 단위 (Vitest) — 규칙·상태·관리자·content 배치 규칙. 1~2초
+npm run test:e2e     # E2E (Playwright) — 운영 빌드를 3100번에 띄워 375×812로. 1~2분
 ```
+
+- 단위 테스트는 메모리 저장소·가짜 쿠키로 돈다(`tests/unit/setup.ts`). `.data/store.json`을 건드리지 않는다.
+- E2E는 이 PC의 Chrome을 쓴다(`channel: 'chrome'`) — Playwright 브라우저를 따로 받지 않는다.
+  저장소는 `.data/e2e-store.json`(`STORE_FILE`), 관리자 키는 `playwright.config.ts`의 테스트 값.
+  개발 서버(3000)를 켜 둔 채 돌려도 된다(dev는 `.next/dev`, 빌드는 `.next`).
+- E2E가 지키는 화면 규칙: 표지 375×812 한 화면, 가로 넘침 없음, 빨강은 登에만, 엔딩 순서·1회,
+  스크립트 꺼짐·모션 줄이기에서도 글이 보임, PC 480px, OG 1200×630.
+- 화면을 바꾸다 E2E가 깨지면 먼저 규칙을 어긴 것인지 본다. 테스트를 고쳐 맞추기 전에 묻는다.
 
 - 미리보기 설정: `.claude/launch.json` (farewell-dev)
 - 저장소 환경변수가 없으면 로컬 파일(`.data/store.json`)로 돈다. 운영은 Upstash Redis.
